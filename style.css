@@ -1,0 +1,75 @@
+body {
+    background-color: black;
+    color: white;
+  }
+  h1 {
+    text-align: center;
+  }
+  
+  .game-board {
+     display: grid;
+     grid-template-columns: 1fr 1fr 1fr;
+     grid-template-rows: 1fr 1fr 1fr;
+     height: 50vh;
+     width: 50vh;
+     padding: 10px;
+    font-size: 80px;
+    position: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .square {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 5px solid white;
+      text-Align: center;
+      color: white;
+  }
+  .square:nth-child(1), .square:nth-child(2), .square:nth-child(3) {
+      border-top: none
+  }
+  .square:nth-child(3), .square:nth-child(6), .square:nth-child(9) {
+      border-right: none
+  }
+  .square:nth-child(7), .square:nth-child(8), .square:nth-child(9) {
+      border-bottom: none
+  }
+  .square:nth-child(1), .square:nth-child(4), .square:nth-child(7) {
+      border-left: none
+  }
+  .score-track {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .score-column {
+    padding: 0 15px 0 15px;
+    border-bottom: 1px solid black;
+  
+  }
+  .win {
+    font-size: 45px;
+    text-align: center;
+  }
+  .restart {
+    width: 175px;
+    border: none;
+    border-radius: 50%;
+    background-color: black;
+    color: white;
+    font-size: 30px;;
+  }
+  .restart:hover {
+    font-weight: bold;
+    border: 5px solid white;
+    border-radius: 50%;
+    padding: 15px
+  
+  }
+
+
+  footer{
+    text-align: center;
+    margin-top: 5rem;
+  }
