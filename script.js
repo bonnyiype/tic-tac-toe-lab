@@ -16,6 +16,8 @@ let scoreX = 0;
 
 //This variable keeps track of Player O's score, which is the number of times Player O has won the game.
 let scoreO = 0;
+
+// Keeps track of tie score
 let tieCount = 0;
 
 //Define a function checkWin() to check if there's a winner
@@ -70,19 +72,50 @@ function handleClick(e){
    const index = e.target.getAttribute("square-index")
   
 
-  //condition 2 // Check if the square is empty
+  //condition 2 // Check if the square is empty with other conditional statemnst inside it
 
   if(board[index] === ""){
     // Fill the square with the current player's symbol
     board[index] = currentPlayer;
     e.target.textContent = currentPlayer
+    
+    //conditional statements inside the if (board[index] === "") block:
 
+    // Check if the current player has won the game
+    if(checkWin()) {
+      // If the player has won, update the score and display an alert message
+      if (currentPlayer === "X"){
+        scoreX++;
+        playerXScore.textContent = scoreX;
+
+      } else {
+        scoreO++
+        playerO.textContent = scoreO;
+
+      }
+
+      gameOver = true;
+      alert(`Hooray${currentPlayer}wins`)
+    }
+      // If the game has ended in a tie, update the tie count and display an alert message
+      } else if(checkTie) {
+        
+        gameOver = true;
+        tieCount++
+        tieCount.textContent = tieCount;
+        alert(`It's a tie! Better luck next time`)
+
+    }else {
+
+
+      // If the game is still in progress, switch to the other player's turn
+      currentPlayer = currentPlayer === 'X' ? "0": "X"
+
+    }
 
   }
 
 
-
-}
 
 
 
