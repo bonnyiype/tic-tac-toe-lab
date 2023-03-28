@@ -62,58 +62,73 @@ return board.every((square) => square !== "")
 // it handles the core game mechanics of filling squares, 
 //checking for wins and ties, updating the score, and switching players.
 
-function handleClick(e){
+function handleClick(e) {
+  // Condition 1: game is over (gameOver === true). 
+  if (gameOver) return; // Player should NOT be able to make any changes
 
-  //Condition 1 ==> game is over (gameOver === true). 
-  if (gameOver) return;//nothing as player should NOT be able to move
+  // Get the index of the clicked square from the event target
+  const index = e.target.getAttribute("square-index");
+  console.log(index)
 
-
-  //if game is still in progress Get the index of the clicked square from the event target
-   const index = e.target.getAttribute("square-index")
-  
-
-  //condition 2 // Check if the square is empty with other conditional statemnst inside it
-
-  if(board[index] === ""){
+  // Check if the square is empty
+  if (board[index] === "") {
     // Fill the square with the current player's symbol
     board[index] = currentPlayer;
-    e.target.textContent = currentPlayer
-    
-    //conditional statements inside the if (board[index] === "") block:
+    e.target.textContent = currentPlayer;
 
-    // Check if the current player has won the game
-    if(checkWin()) {
-      // If the player has won, update the score and display an alert message
-      if (currentPlayer === "X"){
-        scoreX++;
-        playerXScore.textContent = scoreX;
-
-      } else {
-        scoreO++
-        playerO.textContent = scoreO;
-
-      }
-
+    // If the game is still in progress
+    if (!checkWin() && !checkTie()) {
+      // Switch to the other player's turn
+      currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+    } else {
+      // If the game has ended
       gameOver = true;
-      alert(`Hooray${currentPlayer}wins`)
+
+      if (checkWin()) {
+        // If the player has won, update the score and display an alert message
+        if (currentPlayer === "X") {
+          scoreX++;
+          playerXScore.textContent = scoreX;
+        } else {
+          scoreO++;
+          playerOScore.textContent = scoreO;
+        }
+        alert(`Hooray, Player ${currentPlayer} wins!`);
+      } else {
+        // If the game has ended in a tie, update the tie count and display an alert message
+        tieCount++;
+        ties.textContent = tieCount;
+        alert("It's a tie!");
+      }
     }
-      // If the game has ended in a tie, update the tie count and display an alert message
-      } else if(checkTie) {
-        
-        gameOver = true;
-        tieCount++
-        tieCount.textContent = tieCount;
-        alert(`It's a tie! Better luck next time`)
-
-    }else {
-
-
-      // If the game is still in progress, switch to the other player's turn
-      currentPlayer = currentPlayer === 'X' ? "0": "X"
-
-    }
-
   }
+}
+
+  
+//function resetBoard() to reset the game board:
+//Reset the board array, currentPlayer, and gameOver state.
+function resetBoard (){
+
+  board = ['', '', '', '', '', '', '', '', ''];
+  currentPlayer = 'X';
+  gameOver = false;
+  //Loop through all the squares and clear their textContent
+  squares.forEach((square)=>{
+
+    square.textContent = "";
+
+  })
+
+}
+
+//Add an event listener to the restart button to call the resetBoard() function when the button is clicked.
+restartBtn.addEventListener('click', resetBoard);
+
+//Add an event listener to each square to call the handleClick() function when a square is clicked.
+squares.forEach((square) => {
+
+  square.addEventListener('click', handleClick);
+})
 
 
 
