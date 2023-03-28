@@ -1,10 +1,10 @@
 //Initialize variables for DOM elements, game state, and scores.
 
-const squares = document.querySelectorAll('.square');
-const playerX = document.getElementById('playerXScore');
-const playerO = document.getElementById('playerOScore');
-const ties = document.getElementById('ties');
-const restartBtn = document.querySelector('.restart');
+// const squares = document.querySelectorAll('.square');
+// const playerX = document.getElementById('playerXScore');
+// const playerO = document.getElementById('playerOScore');
+// const ties = document.getElementById('ties');
+// const restartBtn = document.querySelector('.restart');
 
 //Initially, the board array is filled with empty strings (""), which indicates that all squares on the game board are 
 //empty (no player has placed their symbol in that square yet).
@@ -38,14 +38,16 @@ function checkWin(){
 ];
 
 for (let condition of winConditions){
-
-
-
+  // using destructuring assignment.
+  const [a, b, c] = condition;
+  if (board[a] && board[a] === board[b] && board[a] === board[c]){
+   return true;
+   } 
+  }
+  return false;
 }
 
 
 
 
-
-}
 
