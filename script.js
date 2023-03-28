@@ -48,6 +48,15 @@ for (let condition of winConditions){
 }
 
 
+//Checking tie with a function called checkTie()
+//Instead of for loop we can use every()method to check whether all elements in an array pass a provided test function
+
+function checkTie(){
+return board.every((square) => square !== "")
+
+}
+
+
 
 
 
