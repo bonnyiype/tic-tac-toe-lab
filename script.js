@@ -1,10 +1,10 @@
 //Initialize variables for DOM elements, game state, and scores.
 
-// const squares = document.querySelectorAll('.square');
-// const playerX = document.getElementById('playerXScore');
-// const playerO = document.getElementById('playerOScore');
-// const ties = document.getElementById('ties');
-// const restartBtn = document.querySelector('.restart');
+const squares = document.querySelectorAll('.square');
+const playerX = document.getElementById('playerXScore');
+const playerO = document.getElementById('playerOScore');
+const ties = document.getElementById('ties');
+const restartBtn = document.querySelector('.restart');
 
 //Initially, the board array is filled with empty strings (""), which indicates that all squares on the game board are 
 //empty (no player has placed their symbol in that square yet).
@@ -56,7 +56,33 @@ return board.every((square) => square !== "")
 
 }
 
+//handleClick(e) function is a critical part of the Tic Tac Toe game logic, 
+// it handles the core game mechanics of filling squares, 
+//checking for wins and ties, updating the score, and switching players.
 
+function handleClick(e){
+
+  //Condition 1 ==> game is over (gameOver === true). 
+  if (gameOver) return;//nothing as player should NOT be able to move
+
+
+  //if game is still in progress Get the index of the clicked square from the event target
+   const index = e.target.getAttribute("square-index")
+  
+
+  //condition 2 // Check if the square is empty
+
+  if(board[index] === ""){
+    // Fill the square with the current player's symbol
+    board[index] = currentPlayer;
+    e.target.textContent = currentPlayer
+
+
+  }
+
+
+
+}
 
 
 
