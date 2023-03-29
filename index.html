@@ -1,6 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JS DOM-Tac-Toe</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -23,6 +27,24 @@
 </header>
 
 <main>
+  <div class="player-settings">
+    <div>
+      <label for="playerXName">Player X Name:</label>
+      <input type="text" id="playerXName" />
+    </div>
+    <div>
+      <label for="playerOName">Player O Name:</label>
+      <input type="text" id="playerOName" />
+    </div>
+    <div>
+      <label for="playerXColor">Player X Color:</label>
+      <input type="color" id="playerXColor" />
+    </div>
+    <div>
+      <label for="playerOColor">Player O Color:</label>
+      <input type="color" id="playerOColor" />
+    </div>
+  </div>
   <div class="game-board">
     <div class="square" id="square0" square-index="0"></div>
     <div class="square" id="square1" square-index="1"></div>
@@ -42,3 +64,4 @@
 
 <script src="script.js"></script>
 </body>
+</html>
