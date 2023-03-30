@@ -63,3 +63,60 @@ function checkWin() {
 
 }
 
+//Checking tie with a function called checkTie()
+//Instead of for loop we can use every()method to check whether 
+//all elements in an array pass a provided test function
+
+function checkTie(){
+return state.board.every((square)=> square !== "")
+}
+
+////handleClick(e) function is a critical part of the Tic Tac Toe game logic, 
+// it handles the core game mechanics of filling squares, 
+//checking for wins and ties, updating the score, and switching players.
+
+function handleClick(e){
+    // Condition 1: game is over (gameOver === true). 
+    if(state.gameOver) return;
+    // Get the index of the clicked square from the event target
+    const index = e.target.getAttribute("square-index");
+    console.log(index);
+
+    // Check if the square is empty
+
+    if (state.board[index] = ''){
+
+        state.board[index] = state.currentPlayer;
+        e.target.textContent = state.currentPlayer === 'X' ? state.playerXName :state.playerOName;
+        e.target.style.color = 
+           state.currentPlayer === 'X' ? state.playerXColor : state.playerOColor;
+    
+     // If the game is still in progress
+
+     if(!checkWin() && checkTie()){
+      state.currentPlayer = state.currentPlayer === 'X' ? '0' :'X';
+     } else {
+        state.gameOver = true;
+
+      if (checkWin()){
+
+        if(state.currentPlayer === 'X'){
+          state.scoreX++;
+          playerXScore.textContent = state.scoreX;
+        } else {
+
+            state.scoreO++
+            playerOScore.textContent = state.scoreO;
+        }
+        alert(`Hooray ${state.currentPlayer === 'X' ? state.playerXName : state.playerOName} wins`)
+
+      } else {
+
+        state.tieCount++
+        ties.textContent = state.tieCount;
+        alert("It's a tie!");
+      }
+     }
+     
+    }
+}
