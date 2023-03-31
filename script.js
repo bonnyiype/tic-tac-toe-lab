@@ -84,7 +84,7 @@ function handleClick(e){
 
     // Check if the square is empty
 
-    if (state.board[index] = ''){
+    if (state.board[index] ===''){
 
         state.board[index] = state.currentPlayer;
         e.target.textContent = state.currentPlayer === 'X' ? state.playerXName :state.playerOName;
@@ -93,8 +93,8 @@ function handleClick(e){
     
      // If the game is still in progress
 
-     if(!checkWin() && checkTie()){
-      state.currentPlayer = state.currentPlayer === 'X' ? '0' :'X';
+     if(!checkWin() && !checkTie()){
+      state.currentPlayer = state.currentPlayer === 'X' ? 'O' :'X';
      } else {
         state.gameOver = true;
 
@@ -120,3 +120,45 @@ function handleClick(e){
      
     }
 }
+
+
+function resetBoard(){
+
+  state.board.fill("");
+  state.board.currentPlayer = 'X';
+  state.gameOver = false;
+
+  squares.forEach(square => {
+
+    square.textContent = ''
+    
+  });
+
+}
+
+function updatePlayerNames(){
+state.playerXName = playerONameInput.value || 'Player X';
+state.playerOName = playerONameInput.value || 'Player 0';
+}
+
+
+function updatePlayerColors(){
+state.playerXColor = playerXColorInput.value || 'red';
+state.playerOColor = playerOColorInput.value || 'blue'
+
+}
+
+
+restartBtn.addEventListener('click', resetBoard);
+
+squares.forEach((square)=>{
+
+  square.addEventListener('click', handleClick)
+});
+
+playerXNameInput.addEventListener('change', updatePlayerNames);
+playerONameInput.addEventListener('change', updatePlayerNames);
+playerXColorInput.addEventListener('change', updatePlayerColors);
+playerOColorInput.addEventListener('change', updatePlayerColors);
+
+
